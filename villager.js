@@ -1,3 +1,5 @@
+import {diceRoll} from './script.js'
+
 export class Villager {
     constructor() {
         this.strength = 20;
@@ -8,15 +10,22 @@ export class Villager {
 
 
     flee() {
-        let resultat = this.agility + successRate();
+        let result = this.agility + diceRoll();
+        return result;
     }
 
-    defend() {
-        let resultat = ((this.intellect + this.strength)/2) + successRate();
+    fight() {
+        let result = ((this.intellect + this.strength)/2) + diceRoll();
+        return result;
     }
 
     repair() {
-        let resultat = ((this.stamina + this.intellect)/2) + successRate();
+        let result = ((this.stamina + this.intellect)/2) + diceRoll();
+        return result;
+    }
 
+    barter() {
+        let result = this.intellect + diceRoll();
+        return result;
     }
 }

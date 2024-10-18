@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title></title>
+    <script type="module">
+        import { flee, fight, barter } from './script.js';
+        window.flee = flee;
+        window.fight = fight;
+        window.barter = barter;
+      </script>
 </head>
 <body>
     <div id="map">
@@ -12,9 +18,9 @@
     <div id="encounter">
         <h2>Encounter</h2>
         <p id="encounter-desc"></p>
-        <button>Flee</button>
-        <button>Fight</button>
-        <button>Barter</button>
+        <button onclick="flee();">Flee</button>
+        <button onclick="fight()">Fight</button>
+        <button onclick="barter()">Barter</button>
     </div>
     <script type="module" src="script.js"></script>
 </body>
