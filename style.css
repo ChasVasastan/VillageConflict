@@ -9,21 +9,56 @@ html, body {
 
 .grid {
     padding: 10px;
-    background-color: rgb(101, 101, 101);
+    /*background-color: rgb(101, 101, 101);*/
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 4px;
-    width: 50vw;
-    height: 50vh;
+    width: 80vw;
+    height: 80vh;
+}
+
+#encounter {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    color:white;
+    visibility: hidden;
+}
+
+button {
+    margin: 6px;
 }
 
 .cell {
     background-color: #eaeaea;
-    padding: 20px;
-    border-radius: 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-size: cover;
+    display: flex;
 }
 
-.active {
+.player {
     background-color: #7f3131;
+    border: 10px solid #7f3131;
+}
+
+.Plumber {
+    background-image: url('images/plumber.webp');
+}
+
+.Villager {
+    background-image: url('images/villager.webp');
+}
+
+.Chef {
+    background-image: url('images/chef.webp');
+}
+
+.Carpenter {
+    background-image: url('images/carpenter.webp');
+}
+
+.Client {
+    background-image: url('images/client.webp');
 }

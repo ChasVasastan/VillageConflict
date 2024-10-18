@@ -1,4 +1,4 @@
-class Villager {
+export class Villager {
     constructor() {
         this.strength = 20;
         this.intellect = 20;
