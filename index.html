@@ -13,15 +13,17 @@
       </script>
 </head>
 <body>
-    <div id="map">
-    </div>
-    <div id="encounter">
-        <h2>Encounter</h2>
-        <p id="encounter-desc"></p>
-        <button onclick="flee();">Flee</button>
-        <button onclick="fight()">Fight</button>
-        <button onclick="barter()">Barter</button>
-    </div>
+    <main>
+        <div id="map"></div>
+        <aside id="encounter" class="">
+            <h2>Encounter</h2>
+            <p id="encounter-desc"></p>
+            <button onclick="flee();">Flee</button>
+            <button onclick="fight()">Fight</button>
+            <button onclick="barter()">Barter</button>
+        </aside>
+        <textarea id="log" class="log" readonly="true"></textarea>
+    </main>
     <script type="module" src="script.js"></script>
 </body>
 </html>

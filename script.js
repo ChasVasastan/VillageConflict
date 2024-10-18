@@ -11,15 +11,16 @@ export function randInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var map = new Map(7, 7);
+var map = new Map(9, 9);
 map.createHTML();
-var position = Math.floor(map.SIZE / 2);
+var previousPosition = 0;
+var position = 0;
 var encounter;
-map.spawn(randInt(0, map.WIDTH), randInt(0, map.HEIGHT));
-map.spawn(randInt(0, map.WIDTH), randInt(0, map.HEIGHT));
-map.spawn(randInt(0, map.WIDTH), randInt(0, map.HEIGHT));
-map.spawn(randInt(0, map.WIDTH), randInt(0, map.HEIGHT));
-document.getElementById('map').children[position].classList.add('player');
+map.spawn(randInt(1, map.WIDTH), randInt(1, map.HEIGHT));
+map.spawn(randInt(1, map.WIDTH), randInt(1, map.HEIGHT));
+map.spawn(randInt(1, map.WIDTH), randInt(1, map.HEIGHT));
+map.spawn(randInt(1, map.WIDTH), randInt(1, map.HEIGHT));
+move(position, position);
 document.addEventListener('keydown', (event) => {
     let from = position;
     let to = from;
@@ -39,7 +40,6 @@ document.addEventListener('keydown', (event) => {
             to += 1;
     }
 
-    //console.log(`position ${posx}.${posy}`);
     move(from, to);
 });
 
@@ -51,6 +51,7 @@ function move(from, to) {
 
     let cells = document.getElementById('map').children;
     cells[from].classList.remove('player');
+    previousPosition = position;
     position = to;
     console.log(`Move from ${from} to ${to}.`);
     cells[to].classList.add('player');
@@ -58,37 +59,53 @@ function move(from, to) {
 }
 
 function checkEncounter(index) {
-    let cell = document.getElementById('map').children[index];
     const creature = map.grid[index];
     if (creature) {
         // Encounter
-        document.getElementById('encounter').style.visibility = 'visible';
         let text = `You encountered a ${creature.constructor.name}.`;
-        document.getElementById('encounter-desc').innerText = text;
+        log(text);
+        showEncounter(text);
         encounter = creature;
     } else {
-        document.getElementById('encounter').style.visibility = 'hidden';
+        hideEncounter();
     }
 }
 
 export function flee() {
-    console.log("Flee");
-    encounter = null;
-    let from = position;
-    position += 1;
-    move(from, position);
-    document.getElementById('encounter').style.visibility = 'hidden';
+    let text = `You decided to flee. You are a coward.`;
+    log(text);
+    hideEncounter();
+    move(position, previousPosition);
 }
 
 export function fight() {
-    console.log("Fight");
+    let text = `You fought a ${encounter.constructor.name} and won.`;
+    log(text);
     delete map.grid[position];
     let cells = document.getElementById('map').children;
     cells[position].classList.remove(encounter.constructor.name);
+    hideEncounter();
+}
+
+export function barter() {
+    let text = `You decided to barter with ${encounter.constructor.name}. Your offer was rejected.`;
+    log(text);
+    hideEncounter();
+    move(position, previousPosition);
+}
+
+function showEncounter(text) {
+    document.getElementById('encounter').style.visibility = 'visible';
+    document.getElementById('encounter-desc').innerText = text;
+}
+
+function hideEncounter() {
     encounter = null;
     document.getElementById('encounter').style.visibility = 'hidden';
 }
 
-export function barter() {
-    console.log("Barter");
+function log(text) {
+    let log = document.getElementById('log');
+    log.append(text + '\n');
+    log.scrollTop = log.scrollHeight; // scroll to bottom
 }
