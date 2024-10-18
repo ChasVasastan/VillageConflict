@@ -1,0 +1,29 @@
+html, body {
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(41, 37, 37);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    padding: 10px;
+    background-color: rgb(101, 101, 101);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 4px;
+    width: 50vw;
+    height: 50vh;
+}
+
+.cell {
+    background-color: #eaeaea;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.active {
+    background-color: #7f3131;
+}
