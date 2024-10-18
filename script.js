@@ -1,4 +1,4 @@
-import { createMap } from './map.js'
+import { createMap, MAP_HEIGHT, MAP_WIDTH, MAP_SIZE} from './map.js'
 
 var position = 0;
 
